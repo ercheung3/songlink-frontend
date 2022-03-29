@@ -1,0 +1,35 @@
+#new-song-form-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 40vw;
+    justify-content: center;
+    align-items: center;
+}
+
+.new-song-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#new-song-form-container {
+    border: 1px solid black;
+    padding: 100px 100px;
+    margin-top: 100px;
+    background-color: #FAF9F6;
+    /* border-radius: 6px; */
+    /* width: 100vh; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 0 auto;
+}
+.form-inputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: .8rem;
+}
