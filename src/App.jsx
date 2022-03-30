@@ -3,6 +3,7 @@ import SongContainer from "./SongContainer/songContainer";
 import DropdownCompartment from "./DropdownCompartment/dropdownCompartment";
 import axios from "axios";
 import { React, useState, useEffect } from "react";
+import ArtistSearchComponent from "./SongContainer/NewSongComponent/SearchComponent/ArtistSearchComponent/artistSearchComponent";
 
 function App() {
   const clientId = process.env.REACT_APP_CLIENT_ID;
@@ -115,22 +116,17 @@ function App() {
 
   return (
     <div className="App">
-      <form onSubmit={getArtist}>
-        <input
-          onChange={handleInputChange}
-          type="text"
-          name="selectedArtist"
-          placeholder="Artist Name"
-        ></input>
-        <button type="submit">SUBMIT</button>
-      </form>
-
       <DropdownCompartment
         options={genres.listOfGenresFromAPI}
         selectedValue={genres.selectedGenre}
       ></DropdownCompartment>
+
       <h1>Song List</h1>
-      <SongContainer></SongContainer>
+      <SongContainer
+        artist={artist}
+        getArtist={getArtist}
+        handleInputChange={handleInputChange}
+      ></SongContainer>
     </div>
   );
 }

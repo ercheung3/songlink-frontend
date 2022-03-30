@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import SingleSongComponent from "./SingleSongComponent/singleSongComponent";
 import NewSongComponent from "./NewSongComponent/newSongComponent";
 import DropdownCompartment from "../DropdownCompartment/dropdownCompartment";
-const SongContainer = () => {
+const SongContainer = (props) => {
   const [songs, setSongs] = useState([]);
   const [newSongServerError, setNewSongServerError] = useState("");
   const [requestError, setRequestError] = useState("");
@@ -171,6 +171,9 @@ const SongContainer = () => {
       <NewSongComponent
         newSongServerError={newSongServerError}
         createNewSong={createNewSong}
+        getArtist={props.getArtist}
+        artist={props.artist}
+        handleInputChange={props.handleInputChange}
       ></NewSongComponent>
       {/*If songs.map is null then send singlesongcomponent with key = "-1" from song._id*/}
       {/*newSongServerError, create new song, null song?*/}

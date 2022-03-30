@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./newSongComponent.css";
+import ArtistSearchComponent from "./SearchComponent/ArtistSearchComponent/artistSearchComponent";
 
 const NewSongComponent = (props) => {
   const [isActive, setIsActive] = useState(false);
@@ -86,6 +87,12 @@ const NewSongComponent = (props) => {
             {/*If there is more validation; use new function
                     TODO: props.functionToCall to change onSubmit to either new item or update item
                 */}
+            <ArtistSearchComponent
+              artist={props.artist}
+              getArtist={props.getArtist}
+              handleInputChange={props.handleInputChange}
+            ></ArtistSearchComponent>
+
             <form className="new-song-form" onSubmit={submitNewSong}>
               {/*Checks valid submission state from submitNewItem}*/}
               {isValidState.valid ? null : (
