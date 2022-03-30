@@ -11,7 +11,13 @@ const SongContainer = () => {
   const websiteURL = "http://localhost:3001/songs";
 
   /*
-  Make new song
+  Manually add new song, look up artist, or look up song
+  3 different compartments
+    1. fill out form for new song
+    2. look up artist > click artist > list of songs > click song stretch:(back button with previous api call?)
+    3. look up song > list of songs > click song
+  preview of song (stretch)
+
   Look up artist and/or song title
   get search info from spotify
   add to database
