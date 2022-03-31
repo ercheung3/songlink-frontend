@@ -1,19 +1,26 @@
 import "./artistListComponent.css";
 const ArtistListComponent = (props) => {
-  const ArtistInput = (name) => {
+  const artistInput = (singleArtist) => {
     props.setArtist({
       ...props.artist,
-      selectedArtist: name,
+      selectedArtist: singleArtist.name,
+      selectedArtistId: singleArtist.id,
     });
     props.toggleIsActive();
+    props.getTracks(true, singleArtist.id);
   };
+  let imageSrc = "/music.jpg";
+  if (props.singleArtist.images.length > 0)
+    imageSrc = props.singleArtist.images[2].url;
+
+  console.log(imageSrc);
   return (
     <div>
       <p>{props.singleArtist.name}</p>
       <img
         className="artist-list-image"
-        onClick={() => ArtistInput(props.singleArtist.name)}
-        src={`${props.singleArtist.images[2].url}`}
+        onClick={() => artistInput(props.singleArtist)}
+        src={imageSrc}
         alt={`${props.singleArtist.name}`}
       ></img>
     </div>

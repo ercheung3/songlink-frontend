@@ -173,7 +173,10 @@ const SongContainer = (props) => {
         createNewSong={createNewSong}
         getArtist={props.getArtist}
         setArtist={props.setArtist}
+        getTracks={props.getTracks}
+        setTracks={props.setTracks}
         artist={props.artist}
+        tracks={props.tracks}
         handleInputChange={props.handleInputChange}
       ></NewSongComponent>
       {/*If songs.map is null then send singlesongcomponent with key = "-1" from song._id*/}

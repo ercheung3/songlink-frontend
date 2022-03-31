@@ -27,6 +27,7 @@ function App() {
   const [artist, setArtist] = useState({
     searchArtist: "",
     selectedArtist: "",
+    selectedArtistId: "",
     listOfArtistsFromAPI: [],
   });
   const [playlist, setPlaylist] = useState({
@@ -35,6 +36,7 @@ function App() {
   });
   const [tracks, setTracks] = useState({
     selectedTrack: "",
+    searchTrack: "",
     listOfTracksFromAPI: [],
   });
 
@@ -97,6 +99,40 @@ function App() {
     });
   };
 
+  const getTracks = (fromArtist, artistId) => {
+    axios(spotifyURL, {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Authorization: `Basic ${btoaString}`,
+      },
+      data: "grant_type=client_credentials",
+      method: "POST",
+    }).then((tokenResponse) => {
+      // const tokenResponse = await axios.post(spotifyUrl, {})
+      setToken(tokenResponse.data.access_token);
+      var apiString = "";
+      if (fromArtist)
+        apiString = `https://api.spotify.com/v1/artists/${artistId}/top-tracks?market=US`;
+      //Change when working on song search
+      else
+        apiString =
+          "https://api.spotify.com/v1/search?q=get%20your%20wish&type=track&limit=10";
+      axios(apiString, {
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      }).then((songResponse) => {
+        console.log("SONGS REQUESTED");
+        console.log(songResponse.data.tracks);
+        setTracks({
+          ...tracks,
+          listOfTracksFromAPI: songResponse.data.tracks,
+        });
+      });
+    });
+  };
+
   /**
    * @name handleInputChange
    * @description Changes value of item based on input data
@@ -126,6 +162,9 @@ function App() {
         artist={artist}
         getArtist={getArtist}
         setArtist={setArtist}
+        tracks={tracks}
+        getTracks={getTracks}
+        setTracks={setTracks}
         handleInputChange={handleInputChange}
       ></SongContainer>
     </div>
