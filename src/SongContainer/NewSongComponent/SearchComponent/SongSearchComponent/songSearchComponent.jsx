@@ -44,6 +44,7 @@ const SongSearchComponent = (props) => {
                 setArtist={props.setArtist}
                 artist={props.artist}
                 getTracks={props.getTracks}
+                setTracks={props.setTracks}
                 toggleIsSongActive={toggleIsSongActive}
                 singleTrack={singleTrack}
               ></SongListComponent>

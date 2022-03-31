@@ -2,10 +2,12 @@ import "./songListComponent.css";
 
 const SongListComponent = (props) => {
   let audio;
-  const trackInput = (singleTrack) => {
+
+  const trackInput = () => {
+    stopPreview();
     props.setTracks({
       ...props.tracks,
-      selectedTrack: singleTrack.name,
+      selectedTrack: props.singleTrack,
     });
     props.toggleIsSongActive();
     //props.getTracks(true);
@@ -25,13 +27,7 @@ const SongListComponent = (props) => {
         audio.currentTime = 0;
       }
   };
-  /* <img
-        className="track-list-image"
-        onClick={() => trackInput(props.singleTrack)}
-        src={`${props.singleTrack.images[2].url}`}
-        alt={`${props.singleTrack.name}`}
-      ></img>
-      */
+
   return (
     <>
       {props.singleTrack.preview_url !== null ? (
@@ -39,6 +35,7 @@ const SongListComponent = (props) => {
           className="has-preview"
           onMouseEnter={playPreview}
           onMouseLeave={stopPreview}
+          onClick={trackInput}
         >
           <p>{props.singleTrack.name}</p>
         </div>

@@ -93,8 +93,7 @@ const NewSongComponent = (props) => {
               setArtist={props.setArtist}
               getTracks={props.getTracks}
               tracks={props.tracks}
-              setTracks={props.setTrack}
-              s
+              setTracks={props.setTracks}
               handleInputChange={props.handleInputChange}
             ></SearchComponent>
 
