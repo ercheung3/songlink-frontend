@@ -1,10 +1,20 @@
+import "./artistListComponent.css";
 const ArtistListComponent = (props) => {
+  const ArtistInput = (name) => {
+    props.setArtist({
+      ...props.artist,
+      selectedArtist: name,
+    });
+    props.toggleIsActive();
+  };
   return (
     <div>
-      <p>{props.artist.name}</p>
+      <p>{props.singleArtist.name}</p>
       <img
-        src={`${props.artist.images[2].url}`}
-        alt={`${props.artist.name}`}
+        className="artist-list-image"
+        onClick={() => ArtistInput(props.singleArtist.name)}
+        src={`${props.singleArtist.images[2].url}`}
+        alt={`${props.singleArtist.name}`}
       ></img>
     </div>
   );

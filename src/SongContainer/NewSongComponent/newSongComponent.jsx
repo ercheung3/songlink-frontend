@@ -90,6 +90,7 @@ const NewSongComponent = (props) => {
             <ArtistSearchComponent
               artist={props.artist}
               getArtist={props.getArtist}
+              setArtist={props.setArtist}
               handleInputChange={props.handleInputChange}
             ></ArtistSearchComponent>
 

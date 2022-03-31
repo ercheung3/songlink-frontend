@@ -1,4 +1,6 @@
 import ArtistListComponent from "./ArtistListComponent/artistListComponent";
+import { useState } from "react";
+
 /*
         setArtist({
           ...artist,
@@ -43,21 +45,46 @@ import ArtistListComponent from "./ArtistListComponent/artistListComponent";
   */
 
 const ArtistSearchComponent = (props) => {
+  const [isActive, setIsActive] = useState(false);
+  /**
+   * @name toggleIsActive
+   * @description changes state of isActive to show form
+   *
+   * @params none
+   * @returns null
+   */
+  const toggleIsActive = () => {
+    setIsActive(!isActive);
+  };
+
+  const submitSearch = (e) => {
+    props.getArtist(e);
+    toggleIsActive();
+  };
   return (
     <div>
       Artist Search
-      <form onSubmit={props.getArtist}>
+      <form onSubmit={submitSearch}>
         <input
           onChange={props.handleInputChange}
           type="text"
-          name="selectedArtist"
+          name="searchArtist"
           placeholder="Artist Name"
         ></input>
         <button type="submit">SUBMIT</button>
       </form>
-      {props.artist.listOfArtistsFromAPI.map((artist) => {
-        return <ArtistListComponent artist={artist}></ArtistListComponent>;
-      })}
+      {isActive
+        ? props.artist.listOfArtistsFromAPI.map((singleArtist) => {
+            return (
+              <ArtistListComponent
+                setArtist={props.setArtist}
+                artist={props.artist}
+                toggleIsActive={toggleIsActive}
+                singleArtist={singleArtist}
+              ></ArtistListComponent>
+            );
+          })
+        : ""}
     </div>
   );
 };

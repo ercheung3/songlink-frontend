@@ -172,6 +172,7 @@ const SongContainer = (props) => {
         newSongServerError={newSongServerError}
         createNewSong={createNewSong}
         getArtist={props.getArtist}
+        setArtist={props.setArtist}
         artist={props.artist}
         handleInputChange={props.handleInputChange}
       ></NewSongComponent>

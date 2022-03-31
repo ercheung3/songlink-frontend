@@ -25,8 +25,8 @@ function App() {
   });
 
   const [artist, setArtist] = useState({
+    searchArtist: "",
     selectedArtist: "",
-    artistAPI: "",
     listOfArtistsFromAPI: [],
   });
   const [playlist, setPlaylist] = useState({
@@ -75,7 +75,7 @@ function App() {
     }).then((tokenResponse) => {
       // const tokenResponse = await axios.post(spotifyUrl, {})
       setToken(tokenResponse.data.access_token);
-      const apiName = artist.selectedArtist.replace(/ /g, "%20");
+      const apiName = artist.searchArtist.replace(/ /g, "%20");
       console.log(apiName);
       axios(
         `https://api.spotify.com/v1/search?query=${apiName}&type=artist&locale=en-US&offset=0&limit=10`,
@@ -125,6 +125,7 @@ function App() {
       <SongContainer
         artist={artist}
         getArtist={getArtist}
+        setArtist={setArtist}
         handleInputChange={handleInputChange}
       ></SongContainer>
     </div>
