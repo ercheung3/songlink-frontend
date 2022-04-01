@@ -23,17 +23,15 @@ function App() {
     selectedGenre: "",
     listOfGenresFromAPI: [],
   });
-
-  const [artist, setArtist] = useState({
+  const initialArtist = {
     searchArtist: "",
     selectedArtist: "",
     selectedArtistId: "",
+    selectedArtistGenres: [],
     listOfArtistsFromAPI: [],
-  });
-  const [playlist, setPlaylist] = useState({
-    selectedPlaylist: "",
-    listOfPlaylistFromAPI: [],
-  });
+  };
+  const [artist, setArtist] = useState(initialArtist);
+
   const [tracks, setTracks] = useState({
     selectedTrack: "",
     searchTrack: "",

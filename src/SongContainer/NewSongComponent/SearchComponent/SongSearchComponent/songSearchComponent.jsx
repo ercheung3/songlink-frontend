@@ -42,9 +42,10 @@ const SongSearchComponent = (props) => {
               <SongListComponent
                 key={singleTrack.id}
                 setArtist={props.setArtist}
-                artist={props.artist}
+                genres={props.genres}
                 getTracks={props.getTracks}
                 setTracks={props.setTracks}
+                setNewSong={props.setNewSong}
                 toggleIsSongActive={toggleIsSongActive}
                 singleTrack={singleTrack}
               ></SongListComponent>

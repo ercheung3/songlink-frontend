@@ -5,6 +5,7 @@ const ArtistListComponent = (props) => {
       ...props.artist,
       selectedArtist: singleArtist.name,
       selectedArtistId: singleArtist.id,
+      selectedArtistGenres: singleArtist.genres,
     });
     props.toggleIsActive();
     props.getTracks(true, singleArtist.id);
@@ -13,7 +14,6 @@ const ArtistListComponent = (props) => {
   if (props.singleArtist.images.length > 0)
     imageSrc = props.singleArtist.images[2].url;
 
-  console.log(imageSrc);
   return (
     <div>
       <p>{props.singleArtist.name}</p>

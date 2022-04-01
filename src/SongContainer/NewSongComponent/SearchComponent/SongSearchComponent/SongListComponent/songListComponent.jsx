@@ -10,6 +10,15 @@ const SongListComponent = (props) => {
       selectedTrack: props.singleTrack,
     });
     props.toggleIsSongActive();
+    //SET VALUE VARIABLES FOR INPUT
+    props.setNewSong({
+      title: props.singleTrack.name,
+      artist: props.singleTrack.artists[0].name,
+      albumTitle: props.singleTrack.album.name,
+      albumArt: props.singleTrack.album.images[2].url,
+      genre: props.genres[parseInt(Math.random() * props.genres.length)],
+      media: props.singleTrack.external_urls.spotify,
+    });
     //props.getTracks(true);
   };
   const playPreview = () => {
@@ -40,7 +49,7 @@ const SongListComponent = (props) => {
           <p>{props.singleTrack.name}</p>
         </div>
       ) : (
-        <div className="no-preview">
+        <div className="no-preview" onClick={trackInput}>
           <p>{props.singleTrack.name}</p>
         </div>
       )}

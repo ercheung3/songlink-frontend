@@ -13,9 +13,11 @@ const SearchComponent = (props) => {
         handleInputChange={props.handleInputChange}
       ></ArtistSearchComponent>
       <SongSearchComponent
+        genres={props.artist.selectedArtistGenres}
         tracks={props.tracks}
         getTracks={props.getTracks}
         setTracks={props.setTracks}
+        setNewSong={props.setNewSong}
       ></SongSearchComponent>
     </div>
   );
