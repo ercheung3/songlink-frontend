@@ -1,9 +1,12 @@
 import { useState } from "react";
 import "./newSongComponent.css";
 import SearchComponent from "./SearchComponent/searchComponent";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
 
 const NewSongComponent = (props) => {
   const [isActive, setIsActive] = useState(false);
+  const [isModalActive, setIsModalActive] = useState(false);
   const [newSong, setNewSong] = useState({});
   const [isValidState, setIsValidState] = useState({
     valid: true,
@@ -21,6 +24,16 @@ const NewSongComponent = (props) => {
     setIsActive(!isActive);
   };
 
+  /**
+   * @name toggleIsModalActive
+   * @description changes state of isActive to show form
+   *
+   * @params none
+   * @returns null
+   */
+  const toggleIsModalActive = () => {
+    setIsModalActive(!isModalActive);
+  };
   /**
    * @name handleInputChange
    * @description Changes value of item based on input data
@@ -72,6 +85,7 @@ const NewSongComponent = (props) => {
         message: "",
       });
       setIsActive(false);
+      setIsModalActive(false);
     }
   };
 
@@ -82,22 +96,57 @@ const NewSongComponent = (props) => {
         //If isActive is true, show form
         isActive ? (
           <div id="new-song-form-container">
-            {/*Maybe conver to module? */}
-            <div onClick={toggleIsActive}> X </div>
+            <Modal show={isModalActive} onHide={toggleIsModalActive}>
+              <Modal.Header closeButton>
+                <Modal.Title>Find Song From Spotify</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <SearchComponent
+                  artist={props.artist}
+                  getArtist={props.getArtist}
+                  setArtist={props.setArtist}
+                  getTracks={props.getTracks}
+                  tracks={props.tracks}
+                  setTracks={props.setTracks}
+                  setNewSong={setNewSong}
+                  isSongActive={props.isSongActive}
+                  setIsSongActive={props.setIsSongActive}
+                  toggleIsSongActive={props.toggleIsSongActive}
+                  handleInputChange={props.handleInputChange}
+                ></SearchComponent>
+              </Modal.Body>
+              <Modal.Footer>
+                <Button variant="secondary" onClick={toggleIsModalActive}>
+                  Close
+                </Button>
+                <Button variant="primary" onClick={toggleIsModalActive}>
+                  Import Data
+                </Button>
+              </Modal.Footer>
+            </Modal>
+            {/*Maybe convert to module? */}
+            <Button
+              variant="primary"
+              onClick={() => {
+                toggleIsModalActive();
+              }}
+            >
+              Spotify
+            </Button>
+            <Button
+              closeButton
+              variant="secondary"
+              onClick={() => {
+                toggleIsActive();
+                toggleIsModalActive();
+              }}
+            >
+              Close
+            </Button>
+
             {/*If there is more validation; use new function
                     TODO: props.functionToCall to change onSubmit to either new item or update item
                 */}
-            <SearchComponent
-              artist={props.artist}
-              getArtist={props.getArtist}
-              setArtist={props.setArtist}
-              getTracks={props.getTracks}
-              tracks={props.tracks}
-              setTracks={props.setTracks}
-              setNewSong={setNewSong}
-              handleInputChange={props.handleInputChange}
-            ></SearchComponent>
-
             <form className="new-song-form" onSubmit={submitNewSong}>
               {/*Checks valid submission state from submitNewItem}*/}
               {isValidState.valid ? null : (
@@ -157,7 +206,9 @@ const NewSongComponent = (props) => {
           </div>
         ) : (
           //If isActive is false, showButton
-          <button onClick={toggleIsActive}>CREATE NEW SONG</button>
+          <Button variant="primary" onClick={toggleIsActive}>
+            Add A New Song!
+          </Button>
         )
       }
     </>

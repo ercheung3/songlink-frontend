@@ -3,7 +3,7 @@ import SongContainer from "./SongContainer/songContainer";
 import DropdownCompartment from "./DropdownCompartment/dropdownCompartment";
 import axios from "axios";
 import { React, useState, useEffect } from "react";
-import ArtistSearchComponent from "./SongContainer/NewSongComponent/SearchComponent/ArtistSearchComponent/artistSearchComponent";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   const clientId = process.env.REACT_APP_CLIENT_ID;
@@ -23,6 +23,7 @@ function App() {
     selectedGenre: "",
     listOfGenresFromAPI: [],
   });
+
   const initialArtist = {
     searchArtist: "",
     selectedArtist: "",
@@ -30,6 +31,7 @@ function App() {
     selectedArtistGenres: [],
     listOfArtistsFromAPI: [],
   };
+
   const [artist, setArtist] = useState(initialArtist);
 
   const [tracks, setTracks] = useState({
@@ -38,7 +40,17 @@ function App() {
     listOfTracksFromAPI: [],
   });
 
-  const [trackDetail, setTrackDetail] = useState(null);
+  const [isSongActive, setIsSongActive] = useState(false);
+  /**
+   * @name toggleIsSongActive
+   * @description changes state of isActive to show form
+   *
+   * @params none
+   * @returns null
+   */
+  const toggleIsSongActive = () => {
+    setIsSongActive(!isSongActive);
+  };
 
   useEffect(() => {
     axios(spotifyURL, {
@@ -163,6 +175,9 @@ function App() {
         tracks={tracks}
         getTracks={getTracks}
         setTracks={setTracks}
+        isSongActive={isSongActive}
+        setIsSongActive={setIsSongActive}
+        toggleIsSongActive={toggleIsSongActive}
         handleInputChange={handleInputChange}
       ></SongContainer>
     </div>

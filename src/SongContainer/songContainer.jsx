@@ -177,6 +177,9 @@ const SongContainer = (props) => {
         setTracks={props.setTracks}
         artist={props.artist}
         tracks={props.tracks}
+        isSongActive={props.isSongActive}
+        setIsSongActive={props.setIsSongActive}
+        toggleIsSongActive={props.toggleIsSongActive}
         handleInputChange={props.handleInputChange}
       ></NewSongComponent>
       {/*If songs.map is null then send singlesongcomponent with key = "-1" from song._id*/}

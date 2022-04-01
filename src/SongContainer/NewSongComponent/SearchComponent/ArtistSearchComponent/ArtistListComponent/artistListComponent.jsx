@@ -8,6 +8,7 @@ const ArtistListComponent = (props) => {
       selectedArtistGenres: singleArtist.genres,
     });
     props.toggleIsActive();
+    props.toggleIsSongActive();
     props.getTracks(true, singleArtist.id);
   };
   let imageSrc = "/music.jpg";

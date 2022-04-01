@@ -1,18 +1,6 @@
 import SongListComponent from "./SongListComponent/songListComponent";
 import { useState } from "react";
 const SongSearchComponent = (props) => {
-  const [isSongActive, setIsSongActive] = useState(false);
-  /**
-   * @name toggleIsActive
-   * @description changes state of isActive to show form
-   *
-   * @params none
-   * @returns null
-   */
-  const toggleIsSongActive = () => {
-    setIsSongActive(!isSongActive);
-  };
-
   const submitSearch = (e) => {
     /*
           Song Search
@@ -35,8 +23,8 @@ const SongSearchComponent = (props) => {
 
   return (
     <div className="search-song">
-      <button onClick={toggleIsSongActive}>SHOW SONGS</button>
-      {isSongActive
+      <button onClick={props.toggleIsSongActive}>SHOW SONGS</button>
+      {props.isSongActive
         ? props.tracks.listOfTracksFromAPI.map((singleTrack) => {
             return (
               <SongListComponent
@@ -46,7 +34,7 @@ const SongSearchComponent = (props) => {
                 getTracks={props.getTracks}
                 setTracks={props.setTracks}
                 setNewSong={props.setNewSong}
-                toggleIsSongActive={toggleIsSongActive}
+                toggleIsSongActive={props.toggleIsSongActive}
                 singleTrack={singleTrack}
               ></SongListComponent>
             );

@@ -17,6 +17,7 @@ const ArtistSearchComponent = (props) => {
   const submitSearch = (e) => {
     props.getArtist(e);
     toggleIsActive();
+    if (props.isSongActive === true) props.setIsSongActive = false;
   };
   return (
     <div className="search-artist">
@@ -34,6 +35,7 @@ const ArtistSearchComponent = (props) => {
         ? props.artist.listOfArtistsFromAPI.map((singleArtist) => {
             return (
               <ArtistListComponent
+                toggleIsSongActive={props.toggleIsSongActive}
                 key={singleArtist.id}
                 setArtist={props.setArtist}
                 artist={props.artist}
