@@ -14,6 +14,7 @@
 }
 
 #new-song-form-container {
+    position: relative;
     border: 1px solid black;
     padding: 100px 100px;
     margin-top: 100px;
@@ -32,4 +33,9 @@
     justify-content: center;
     align-items: center;
     gap: .8rem;
+}
+.close-button {
+    position:absolute;
+    top:0;
+    right:0;
 }

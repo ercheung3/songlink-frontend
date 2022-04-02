@@ -88,7 +88,6 @@ function App() {
       // const tokenResponse = await axios.post(spotifyUrl, {})
       setToken(tokenResponse.data.access_token);
       const apiName = artist.searchArtist.replace(/ /g, "%20");
-      console.log(apiName);
       axios(
         `https://api.spotify.com/v1/search?query=${apiName}&type=artist&locale=en-US&offset=0&limit=10`,
         {
@@ -109,7 +108,8 @@ function App() {
     });
   };
 
-  const getTracks = (fromArtist, artistId) => {
+  const getTracks = (e, fromArtist, artistId) => {
+    e.preventDefault();
     axios(spotifyURL, {
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
@@ -124,9 +124,10 @@ function App() {
       if (fromArtist)
         apiString = `https://api.spotify.com/v1/artists/${artistId}/top-tracks?market=US`;
       //Change when working on song search
-      else
-        apiString =
-          "https://api.spotify.com/v1/search?q=get%20your%20wish&type=track&limit=10";
+      else {
+        const apiSearch = tracks.searchTrack.replace(/ /g, "%20");
+        apiString = `https://api.spotify.com/v1/search?q=${apiSearch}&type=track&limit=10`;
+      }
       axios(apiString, {
         method: "GET",
         headers: {

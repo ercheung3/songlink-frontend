@@ -21,7 +21,6 @@ const ArtistSearchComponent = (props) => {
   };
   return (
     <div className="search-artist">
-      Artist Search
       <form onSubmit={submitSearch}>
         <input
           onChange={props.handleInputChange}
@@ -35,6 +34,7 @@ const ArtistSearchComponent = (props) => {
         ? props.artist.listOfArtistsFromAPI.map((singleArtist) => {
             return (
               <ArtistListComponent
+                setIsSongActive={props.setIsSongActive}
                 toggleIsSongActive={props.toggleIsSongActive}
                 key={singleArtist.id}
                 setArtist={props.setArtist}

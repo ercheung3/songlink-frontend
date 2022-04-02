@@ -18,6 +18,7 @@ const SearchComponent = (props) => {
       <SongSearchComponent
         isSongActive={props.isSongActive}
         toggleIsSongActive={props.toggleIsSongActive}
+        toggleIsModalActive={props.toggleIsModalActive}
         genres={props.artist.selectedArtistGenres}
         tracks={props.tracks}
         getTracks={props.getTracks}

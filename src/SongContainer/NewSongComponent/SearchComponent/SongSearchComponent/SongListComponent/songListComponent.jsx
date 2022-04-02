@@ -1,4 +1,5 @@
 import "./songListComponent.css";
+import Badge from "react-bootstrap/Badge";
 
 const SongListComponent = (props) => {
   let audio;
@@ -10,6 +11,7 @@ const SongListComponent = (props) => {
       selectedTrack: props.singleTrack,
     });
     props.toggleIsSongActive();
+    props.toggleIsModalActive();
     //SET VALUE VARIABLES FOR INPUT
     props.setNewSong({
       title: props.singleTrack.name,
@@ -46,7 +48,10 @@ const SongListComponent = (props) => {
           onMouseLeave={stopPreview}
           onClick={trackInput}
         >
-          <p>{props.singleTrack.name}</p>
+          <p>
+            {props.singleTrack.name}
+            <Badge bg="secondary">Listen</Badge>
+          </p>
         </div>
       ) : (
         <div className="no-preview" onClick={trackInput}>

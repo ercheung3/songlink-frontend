@@ -1,6 +1,22 @@
 import SongListComponent from "./SongListComponent/songListComponent";
 import { useState } from "react";
 const SongSearchComponent = (props) => {
+  /**
+   * @name handleInputChange
+   * @description Changes value of item based on input data
+   *
+   * @param {Event} e
+   * @returns none
+   */
+  const handleInputChange = (e) => {
+    //console.log(e.target.name);
+    props.setTracks({
+      //property spread notation
+      ...props.tracks,
+      //e is event; we use target to allow for all input fields.
+      [e.target.name]: e.target.value,
+    });
+  };
   const submitSearch = (e) => {
     /*
           Song Search
@@ -17,9 +33,24 @@ const SongSearchComponent = (props) => {
         <button onClick={toggleIsSongActive}>SHOW SONGS</button>
       </form>
     */
-    //props.getTracks(e);
+
+    console.log("SUBMITTED SEARCH FOR SONG");
+
+    props.getTracks(e, false, "");
+    props.toggleIsSongActive();
     //toggleIsActive();
   };
+
+  /*Song Search
+      <form onSubmit={submitSearch}>
+        <input
+          onChange={handleInputChange}
+          type="text"
+          name="searchTrack"
+          placeholder="Track Name"
+        ></input>
+        <button type="submit">SUBMIT</button>
+      </form>*/
 
   return (
     <div className="search-song">
@@ -35,6 +66,7 @@ const SongSearchComponent = (props) => {
                 setTracks={props.setTracks}
                 setNewSong={props.setNewSong}
                 toggleIsSongActive={props.toggleIsSongActive}
+                toggleIsModalActive={props.toggleIsModalActive}
                 singleTrack={singleTrack}
               ></SongListComponent>
             );

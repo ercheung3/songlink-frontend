@@ -3,6 +3,7 @@ import "./newSongComponent.css";
 import SearchComponent from "./SearchComponent/searchComponent";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
+import CloseButton from "react-bootstrap/CloseButton";
 
 const NewSongComponent = (props) => {
   const [isActive, setIsActive] = useState(false);
@@ -102,17 +103,9 @@ const NewSongComponent = (props) => {
               </Modal.Header>
               <Modal.Body>
                 <SearchComponent
-                  artist={props.artist}
-                  getArtist={props.getArtist}
-                  setArtist={props.setArtist}
-                  getTracks={props.getTracks}
-                  tracks={props.tracks}
-                  setTracks={props.setTracks}
+                  {...props}
+                  toggleIsModalActive={toggleIsModalActive}
                   setNewSong={setNewSong}
-                  isSongActive={props.isSongActive}
-                  setIsSongActive={props.setIsSongActive}
-                  toggleIsSongActive={props.toggleIsSongActive}
-                  handleInputChange={props.handleInputChange}
                 ></SearchComponent>
               </Modal.Body>
               <Modal.Footer>
@@ -133,16 +126,14 @@ const NewSongComponent = (props) => {
             >
               Spotify
             </Button>
-            <Button
-              closeButton
+            <CloseButton
+              className="close-button"
               variant="secondary"
               onClick={() => {
                 toggleIsActive();
                 toggleIsModalActive();
               }}
-            >
-              Close
-            </Button>
+            ></CloseButton>
 
             {/*If there is more validation; use new function
                     TODO: props.functionToCall to change onSubmit to either new item or update item
@@ -201,7 +192,9 @@ const NewSongComponent = (props) => {
                   placeholder="Media Link"
                 ></input>
               </div>
-              <button type="submit">CREATE NEW SONG</button>
+              <Button variant="primary" type="submit">
+                Add Your Favorite Song
+              </Button>
             </form>
           </div>
         ) : (

@@ -1,6 +1,6 @@
 import "./artistListComponent.css";
 const ArtistListComponent = (props) => {
-  const artistInput = (singleArtist) => {
+  const artistInput = (e, singleArtist) => {
     props.setArtist({
       ...props.artist,
       selectedArtist: singleArtist.name,
@@ -8,8 +8,8 @@ const ArtistListComponent = (props) => {
       selectedArtistGenres: singleArtist.genres,
     });
     props.toggleIsActive();
-    props.toggleIsSongActive();
-    props.getTracks(true, singleArtist.id);
+    props.setIsSongActive(true);
+    props.getTracks(e, true, singleArtist.id);
   };
   let imageSrc = "/music.jpg";
   if (props.singleArtist.images.length > 0)
@@ -20,7 +20,7 @@ const ArtistListComponent = (props) => {
       <p>{props.singleArtist.name}</p>
       <img
         className="artist-list-image"
-        onClick={() => artistInput(props.singleArtist)}
+        onClick={(e) => artistInput(e, props.singleArtist)}
         src={imageSrc}
         alt={`${props.singleArtist.name}`}
       ></img>
