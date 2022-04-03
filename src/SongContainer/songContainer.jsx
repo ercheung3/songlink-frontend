@@ -172,15 +172,41 @@ const SongContainer = (props) => {
 
   return (
     <div className="song-container">
-      <div className="favorites-container">
-        {songs.map((song) => {
-          return favoriteSongs.map((favoriteSong) => {
-            return song._id === favoriteSong ? (
-              <FavoritesComponent song={song}></FavoritesComponent>
-            ) : (
-              ""
-            );
-          });
+      <div className="favorites-wrapper">
+        <div className="favorites-title">
+          <h3>Eric's Favorites</h3>
+        </div>
+        <div className="favorites-container">
+          {songs.map((song) => {
+            return favoriteSongs.map((favoriteSong) => {
+              return song._id === favoriteSong ? (
+                <FavoritesComponent
+                  key={song._id}
+                  song={song}
+                ></FavoritesComponent>
+              ) : (
+                ""
+              );
+            });
+          })}
+        </div>
+      </div>
+
+      {/*If songs.map is null then send singlesongcomponent with key = "-1" from song._id*/}
+      {/*newSongServerError, create new song, null song?*/}
+      {/*how to check for length of object or map songs.map.length returns 1 always */}
+      {/*check what happens to _id if given -1 and then made into a new song*/}
+      {/*can you login to spotify without an account?*/}
+      <div className="songs-container">
+        {songs.reverse().map((song) => {
+          return (
+            <SingleSongComponent
+              key={song._id}
+              song={song}
+              deleteSong={deleteSong}
+              updateSong={updateSong}
+            ></SingleSongComponent>
+          );
         })}
       </div>
       <NewSongComponent
@@ -188,21 +214,6 @@ const SongContainer = (props) => {
         createNewSong={createNewSong}
         {...props}
       ></NewSongComponent>
-      {/*If songs.map is null then send singlesongcomponent with key = "-1" from song._id*/}
-      {/*newSongServerError, create new song, null song?*/}
-      {/*how to check for length of object or map songs.map.length returns 1 always */}
-      {/*check what happens to _id if given -1 and then made into a new song*/}
-      {/*can you login to spotify without an account?*/}
-      {songs.reverse().map((song) => {
-        return (
-          <SingleSongComponent
-            key={song._id}
-            song={song}
-            deleteSong={deleteSong}
-            updateSong={updateSong}
-          ></SingleSongComponent>
-        );
-      })}
     </div>
   );
 };

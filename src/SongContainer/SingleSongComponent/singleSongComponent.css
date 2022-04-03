@@ -1,8 +1,14 @@
-.favorites-info {
-    width: 20vw;
-    height: 20vw;
+.single-song-container {
+    width: 15vw;
+    height: 15vw;
 }
-.favorites {
+
+.single-song-info {
+    width: 15vw;
+    height: 15vw;
+    position: relative;
+}
+.single-song {
     font-size: 0em;
     opacity: 0.6;
     background-repeat: no-repeat;
@@ -11,18 +17,18 @@
     text-align: center;
 }
 
-.favorites:hover {
+.single-song:hover {
     font-size: 1em;
     font-style: bold;
     color: white;
     opacity: 1;
 }
 
-.favorites-texts {
+.single-song-texts {
     opacity: 0;
 }
 
-.favorites-texts:hover {
+.single-song-texts:hover {
     opacity: 1;
 
 }

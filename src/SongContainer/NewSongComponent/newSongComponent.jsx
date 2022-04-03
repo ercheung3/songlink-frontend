@@ -62,7 +62,6 @@ const NewSongComponent = (props) => {
     /*This is an additional validation*/
     //There are easier ways to validate inputs
     //required, minLength, etc...
-    console.log("SUBMITTING NEW SONG: " + newSong.preview);
     let validSubmission = true;
     if (newSong.title.length < 2) {
       setIsValidState({
@@ -131,7 +130,6 @@ const NewSongComponent = (props) => {
             </Button>
             <CloseButton
               className="close-button"
-              variant="secondary"
               onClick={() => {
                 toggleIsActive();
                 toggleIsModalActive();

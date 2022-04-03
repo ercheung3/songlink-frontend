@@ -2,3 +2,21 @@
     display:flex;
     justify-content: space-evenly;
 }
+.favorites-title {
+    padding: 1vh;
+}
+.favorites-wrapper {
+    color: white;
+    text-align: center;
+    background-color: #0C1940;
+    height: 40vh;
+    margin: 2vh 0;
+}
+
+.songs-container {
+    display: grid;
+    grid-template-columns: repeat(5,auto);
+    row-gap: 3vh;
+    justify-content: space-evenly;
+    margin: 2vh 2vw;
+}
