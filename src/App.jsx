@@ -1,6 +1,7 @@
 import "./App.css";
 import SongContainer from "./SongContainer/songContainer";
 import DropdownCompartment from "./DropdownCompartment/dropdownCompartment";
+import HeaderContainer from "./HeaderContainer/headerContainer";
 import axios from "axios";
 import { React, useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -97,9 +98,6 @@ function App() {
           },
         }
       ).then((artistResponse) => {
-        console.log("ARTIST");
-        //set artist is not working correctly
-        console.log(artistResponse);
         setArtist({
           ...artist,
           listOfArtistsFromAPI: artistResponse.data.artists.items,
@@ -134,8 +132,6 @@ function App() {
           Authorization: "Bearer " + token,
         },
       }).then((songResponse) => {
-        console.log("SONGS REQUESTED");
-        console.log(songResponse.data.tracks);
         setTracks({
           ...tracks,
           listOfTracksFromAPI: songResponse.data.tracks,
@@ -163,12 +159,12 @@ function App() {
 
   return (
     <div className="App">
+      <HeaderContainer></HeaderContainer>
       <DropdownCompartment
         options={genres.listOfGenresFromAPI}
         selectedValue={genres.selectedGenre}
       ></DropdownCompartment>
 
-      <h1>Song List</h1>
       <SongContainer
         artist={artist}
         getArtist={getArtist}

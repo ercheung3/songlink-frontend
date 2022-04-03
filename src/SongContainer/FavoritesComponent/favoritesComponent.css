@@ -1,0 +1,30 @@
+.favorites-info {
+    width: 200px;
+    height: 200px;
+    position: relative;
+}
+.favorites {
+    font-size: 0em;
+    opacity: 0.6;
+    height: 200px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    text-align: center;
+}
+
+.favorites:hover {
+    font-size: 1em;
+    font-style: bold;
+    color: white;
+    opacity: 1;
+}
+
+.favorites-texts {
+    opacity: 0;
+}
+
+.favorites-texts:hover {
+    opacity: 1;
+
+}

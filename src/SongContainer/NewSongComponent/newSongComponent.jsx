@@ -62,6 +62,7 @@ const NewSongComponent = (props) => {
     /*This is an additional validation*/
     //There are easier ways to validate inputs
     //required, minLength, etc...
+    console.log("SUBMITTING NEW SONG: " + newSong.preview);
     let validSubmission = true;
     if (newSong.title.length < 2) {
       setIsValidState({
@@ -80,6 +81,8 @@ const NewSongComponent = (props) => {
         albumArt: "",
         genre: "",
         media: "",
+        isPlayable: false,
+        preview: "",
       });
       setIsValidState({
         valid: true,
@@ -190,6 +193,20 @@ const NewSongComponent = (props) => {
                   name="media"
                   value={newSong.media}
                   placeholder="Media Link"
+                ></input>
+                <input
+                  onChange={handleInputChange}
+                  type="text"
+                  name="isPlayable"
+                  value={newSong.isPlayable}
+                  placeholder="Playable"
+                ></input>
+                <input
+                  onChange={handleInputChange}
+                  type="text"
+                  name="preview"
+                  value={newSong.preview}
+                  placeholder="Preview Link"
                 ></input>
               </div>
               <Button variant="primary" type="submit">

@@ -10,6 +10,8 @@ const SingleSongComponent = (props) => {
     genre: props.song.genre,
     media: props.song.media,
     _id: props.song._id,
+    isPlayable: props.song.isPlayable,
+    preview: props.song.preview,
   });
   const [isValidState, setIsValidState] = useState({
     valid: true,
@@ -77,6 +79,8 @@ const SingleSongComponent = (props) => {
         albumArt: updateSong.albumArt,
         genre: updateSong.genre,
         media: updateSong.media,
+        isPlayable: updateSong.isPlayable,
+        preview: updateSong.preview,
       });
       setIsValidState({
         valid: true,
@@ -156,6 +160,20 @@ const SingleSongComponent = (props) => {
                   name="media"
                   value={updateSong.media}
                   placeholder="Media Link"
+                ></input>
+                <input
+                  onChange={handleInputChange}
+                  type="text"
+                  name="isPlayable"
+                  value={updateSong.isPlayable}
+                  placeholder="Playable"
+                ></input>
+                <input
+                  onChange={handleInputChange}
+                  type="text"
+                  name="preview"
+                  value={updateSong.preview}
+                  placeholder="Preview Link"
                 ></input>
                 <br></br>
                 <button type="submit">UPDATE SONG</button>

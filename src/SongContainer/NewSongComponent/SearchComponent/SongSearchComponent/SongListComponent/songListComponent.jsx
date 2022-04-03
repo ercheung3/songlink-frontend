@@ -3,6 +3,14 @@ import Badge from "react-bootstrap/Badge";
 
 const SongListComponent = (props) => {
   let audio;
+  let isPlayable = false;
+  let previewUrl = "";
+  if (props.singleTrack.is_playable) {
+    if (props.singleTrack.preview_url !== null) {
+      isPlayable = true;
+      previewUrl = props.singleTrack.preview_url;
+    }
+  }
 
   const trackInput = () => {
     stopPreview();
@@ -17,31 +25,30 @@ const SongListComponent = (props) => {
       title: props.singleTrack.name,
       artist: props.singleTrack.artists[0].name,
       albumTitle: props.singleTrack.album.name,
-      albumArt: props.singleTrack.album.images[2].url,
+      albumArt: props.singleTrack.album.images[0].url,
       genre: props.genres[parseInt(Math.random() * props.genres.length)],
       media: props.singleTrack.external_urls.spotify,
+      isPlayable: isPlayable,
+      preview: previewUrl,
     });
     //props.getTracks(true);
   };
   const playPreview = () => {
-    if (props.singleTrack.is_playable) {
-      if (props.singleTrack.preview_url !== null) {
-        audio = new Audio(props.singleTrack.preview_url);
-        audio.play();
-      }
+    if (isPlayable) {
+      audio = new Audio(previewUrl);
+      audio.play();
     }
   };
   const stopPreview = () => {
-    if (props.singleTrack.is_playable)
-      if (props.singleTrack.preview_url !== null) {
-        audio.pause();
-        audio.currentTime = 0;
-      }
+    if (isPlayable) {
+      audio.pause();
+      audio.currentTime = 0;
+    }
   };
 
   return (
     <>
-      {props.singleTrack.preview_url !== null ? (
+      {isPlayable ? (
         <div
           className="has-preview"
           onMouseEnter={playPreview}

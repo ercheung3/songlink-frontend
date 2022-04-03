@@ -1,15 +1,20 @@
+import "./songContainer.css";
 import { useEffect, useState } from "react";
 import SingleSongComponent from "./SingleSongComponent/singleSongComponent";
 import NewSongComponent from "./NewSongComponent/newSongComponent";
+import FavoritesComponent from "./FavoritesComponent/favoritesComponent";
 import DropdownCompartment from "../DropdownCompartment/dropdownCompartment";
 const SongContainer = (props) => {
   const [songs, setSongs] = useState([]);
   const [newSongServerError, setNewSongServerError] = useState("");
   const [requestError, setRequestError] = useState("");
 
-  //maybe move to env file?
-  const websiteURL = "http://localhost:3001/songs";
+  const websiteURL = "https://songlink-backend.herokuapp.com/songs";
 
+  const [favoriteSongs, setFavoriteSongs] = useState([
+    "6249e7e97b371ce829bc42ce",
+    "6249eaaa7b371ce829bc42d8",
+  ]);
   /*
   Manually add new song, look up artist, or look up song
   3 different compartments
@@ -166,21 +171,22 @@ const SongContainer = (props) => {
   useEffect(getSongs, []);
 
   return (
-    <div>
-      <h2>Songs here!</h2>
+    <div className="song-container">
+      <div className="favorites-container">
+        {songs.map((song) => {
+          return favoriteSongs.map((favoriteSong) => {
+            return song._id === favoriteSong ? (
+              <FavoritesComponent song={song}></FavoritesComponent>
+            ) : (
+              ""
+            );
+          });
+        })}
+      </div>
       <NewSongComponent
         newSongServerError={newSongServerError}
         createNewSong={createNewSong}
-        getArtist={props.getArtist}
-        setArtist={props.setArtist}
-        getTracks={props.getTracks}
-        setTracks={props.setTracks}
-        artist={props.artist}
-        tracks={props.tracks}
-        isSongActive={props.isSongActive}
-        setIsSongActive={props.setIsSongActive}
-        toggleIsSongActive={props.toggleIsSongActive}
-        handleInputChange={props.handleInputChange}
+        {...props}
       ></NewSongComponent>
       {/*If songs.map is null then send singlesongcomponent with key = "-1" from song._id*/}
       {/*newSongServerError, create new song, null song?*/}

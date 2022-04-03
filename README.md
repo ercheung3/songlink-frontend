@@ -1,70 +1,117 @@
-# Getting Started with Create React App
+# Event Palooza App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This out of this world app will let you find fun and upcoming events near your area!
+**Created By: _Brevan Bender, Angela Francisco, Pierre Tulifau, Eric Cheung_**
 
-## Available Scripts
+## Hosted App Link
 
-In the project directory, you can run:
+[Event Palooza App via Heroku](https://eventpalooza.herokuapp.com/events)
 
-### `npm start`
+<!-- ### Preview of Eventpalooza -->
+<!-- ![Screenshot preview of Eventpalooze](./public/img/Event%20Palooza%20User%20Flow.png) -->
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Technology Used
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- HTML/CSS
+- JavaScript
 
-### `npm test`
+## Frameworks & Libraries
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- MongoDB Atlas, Mongoose
+- Node.js
+- React.js
+- API Axios
 
-### `npm run build`
+## MVP
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Manually add new song, look up artist, or look up song
+3 different compartments 1. fill out form for new song 2. look up artist > click artist > list of songs > click song stretch:(back button with previous api call?) 3. look up song > list of songs > click song
+preview of song (stretch)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Look up artist and/or song title
+get search info from spotify
+add to database
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Users can search for local events based on their interests!.
+- - User begins on the home page that renders all events and allows users to login/signup
+- - User finds an event their interested in and renders the show page for the event.
+- - If the user is not logged in, they are prompted to log in when saving event.
+- - If user is also the creator of the event, they can edit or delete an event.
+- - The user homepage sends a individualized greeting and displays all events they like.
 
-### `npm run eject`
+## STRETCH GOALS
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- CSS
+  -- Flexbox/Grid Display
+  -- Partials for head, header, footer
+  -- Custom Logo
+  -- Custom Favicon.io
+- Event API using eventURL, starting location - Portland, OR. From [Ticketmaster API](https://developer.ticketmaster.com/products-and-docs/apis/getting-started/)
+- Search functionality with keyword and date (saved events and api events)
+  -- Name, Date, Event Tag
+- Additional user functionality: save/unsave event button
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Future Features
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Responsive Mobile Design
+- Multiple Locations (currently only in Portland)
+- Ability for user to upload an image from file for a new event or when editing an event
+- Additional event type: Age Restriction [0,21]
+- Added save events to Google Calendar
+- Ability for user to delete their account
+- Ability for user to change password
+- Fix user search functionality: works for saved events that were created by users, cannot currently display saved API events
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Models
 
-## Learn More
+Events
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- name: String
+- description : String
+- image: String (url)
+- date: Date (Format YYYY-MM-DDTHH:MM:SSZ)
+- user: User (model)
+- organization: String
+- tag: String
+  - Music/Concert
+  - Community Event
+  - Outdoor Recreation
+  - Health/Fitness
+- location: String
+- likes: (Array (User.id))
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Users
 
-### Code Splitting
+- username: String REQUIRED UNIQUE
+- password: String REQUIRED
+- displayname: String UNIQUE
+- firstname: String
+- lastname: String
+- likes: (Arry (API_Objects ))
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## User Flowchart
 
-### Analyzing the Bundle Size
+![User flowchart for even app](./public/img/Event%20Palooza%20User%20Flow.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+<!-- ## Wireframing -->
 
-### Making a Progressive Web App
+## RESTful Routes
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+![Restful Route Chart](./public/img/RESTful_Routes-event_palooza.png)
 
-### Advanced Configuration
+## General Assembly Project Requirements
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- A working full-stack application, built by you, using Node.js, Mongoose, Express and EJS
+- Adhere to the MVC file structure: Models, Views, Controllers
+- At least one non-User model with all 7 RESTful routes and full CRUD (Events model)
+- A User model with functioning registration, log-in, and log-out abilities
+- Your non-User model is connected to the User that created it (Events model)
+- A git repository not inside the class repo (all team members are collaborators)
+- At least one GitHub commit per day
+- Be deployed online and accessible to the public via Heroku
+- A README.md file
 
-### Deployment
+## Team Contributions
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Front-End Web Development: Angela, Pierre
+- Back-End Web Development: Brevan, Eric
