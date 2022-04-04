@@ -10,7 +10,7 @@ I have always wanted to share my music taste with the world and now you can shar
 
 ## Preview of Songlink
 
-![Imgur](https://imgur.com/MdJa4Q1)
+![Imgur](https://i.imgur.com/MdJa4Q1.png)
 
 ## Technology Used
 
