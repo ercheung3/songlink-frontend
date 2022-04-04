@@ -1,14 +1,16 @@
-# Event Palooza App
+# Songlink App
 
-This out of this world app will let you find fun and upcoming events near your area!
-**Created By: _Brevan Bender, Angela Francisco, Pierre Tulifau, Eric Cheung_**
+I have always wanted to share my music taste with the world and now you can share yours as well.
+**Created By: _ Eric Cheung_**
 
 ## Hosted App Link
 
-[Event Palooza App via Heroku](https://eventpalooza.herokuapp.com/events)
+[Songlink App via Heroku](https://songlink-frontend.herokuapp.com/)
+[Songlink Backend via Heroku](https://songlink-backend.herokuapp.com/)
 
-<!-- ### Preview of Eventpalooza -->
-<!-- ![Screenshot preview of Eventpalooze](./public/img/Event%20Palooza%20User%20Flow.png) -->
+## Preview of Eventpalooza
+
+[Screenshot preview of Eventpalooze](https://imgur.com/a/tJ8gvBa)
 
 ## Technology Used
 
@@ -21,97 +23,65 @@ This out of this world app will let you find fun and upcoming events near your a
 - Node.js
 - React.js
 - API Axios
+- Bootstrap for React
 
 ## MVP
 
-Manually add new song, look up artist, or look up song
-3 different compartments 1. fill out form for new song 2. look up artist > click artist > list of songs > click song stretch:(back button with previous api call?) 3. look up song > list of songs > click song
-preview of song (stretch)
-
-Look up artist and/or song title
-get search info from spotify
-add to database
-
-- Users can search for local events based on their interests!.
-- - User begins on the home page that renders all events and allows users to login/signup
-- - User finds an event their interested in and renders the show page for the event.
-- - If the user is not logged in, they are prompted to log in when saving event.
-- - If user is also the creator of the event, they can edit or delete an event.
-- - The user homepage sends a individualized greeting and displays all events they like.
+- Users can view favorited songs by others.
+  - User begins on the home page that renders all songs and favorited songs by me.
+  - User finds a song that they are interested in and linked to spotify.
+  - Anyone is able to edit or delete an favorited song.
+  - User is able to add a new favorited song by searching an artist and top song from the artist.
 
 ## STRETCH GOALS
 
 - CSS
   -- Flexbox/Grid Display
-  -- Partials for head, header, footer
   -- Custom Logo
   -- Custom Favicon.io
-- Event API using eventURL, starting location - Portland, OR. From [Ticketmaster API](https://developer.ticketmaster.com/products-and-docs/apis/getting-started/)
-- Search functionality with keyword and date (saved events and api events)
-  -- Name, Date, Event Tag
-- Additional user functionality: save/unsave event button
+- Song API using apiURL from Axios [Spotify API](https://developer.spotify.com/)
+- Search functionality of artists from spotify API as well as artist's top 10 tracks.
+- Preview of songs that have sound snippets
+- Bootstrap Components
 
 ## Future Features
 
 - Responsive Mobile Design
-- Multiple Locations (currently only in Portland)
-- Ability for user to upload an image from file for a new event or when editing an event
-- Additional event type: Age Restriction [0,21]
-- Added save events to Google Calendar
-- Ability for user to delete their account
-- Ability for user to change password
-- Fix user search functionality: works for saved events that were created by users, cannot currently display saved API events
+- Search with song title
+- Bug when adding consecutive songs, or updating
+- Improve styling with more bootstrap
+- Creation of users for favoriting and more secure editing/deleting
+- Search functionality of favorite songs
+- Find a better way to sort songs by genre to give users random songs
+- Multiple Artists for a single song
+- No duplication of songs
 
 ## Models
 
-Events
+Songs
 
-- name: String
-- description : String
-- image: String (url)
-- date: Date (Format YYYY-MM-DDTHH:MM:SSZ)
-- user: User (model)
-- organization: String
-- tag: String
-  - Music/Concert
-  - Community Event
-  - Outdoor Recreation
-  - Health/Fitness
-- location: String
-- likes: (Array (User.id))
-
-Users
-
-- username: String REQUIRED UNIQUE
-- password: String REQUIRED
-- displayname: String UNIQUE
-- firstname: String
-- lastname: String
-- likes: (Arry (API_Objects ))
-
-## User Flowchart
-
-![User flowchart for even app](./public/img/Event%20Palooza%20User%20Flow.png)
-
-<!-- ## Wireframing -->
-
-## RESTful Routes
-
-![Restful Route Chart](./public/img/RESTful_Routes-event_palooza.png)
+- title: String
+- artist: String
+- albumTitle: String
+- albumArt: String (url)
+- genre: String
+- media: String (url to spotify)
+- isPlayable: Boolean
+- preview: String (url to mp3)
 
 ## General Assembly Project Requirements
 
-- A working full-stack application, built by you, using Node.js, Mongoose, Express and EJS
-- Adhere to the MVC file structure: Models, Views, Controllers
-- At least one non-User model with all 7 RESTful routes and full CRUD (Events model)
-- A User model with functioning registration, log-in, and log-out abilities
-- Your non-User model is connected to the User that created it (Events model)
-- A git repository not inside the class repo (all team members are collaborators)
+- A working full-stack application, built by you, using the MERN stack: Node.js, Mongoose, Express and React.
+- Your project should not include EJS.
+- Adhere to the MVC file structure: Models, Views, Controllers (Note, in this case views is React in it's own separate repository; there will not be an actual views directory in your Express backend)
+- At least one model with full CRUD.
+- At least three react components, defined in their own files, besides App.js.
+- Be deployed online and accessible to the public via Heroku (Two git repositories not inside the class repo, one for your backend and one for your frontend)
 - At least one GitHub commit per day
-- Be deployed online and accessible to the public via Heroku
-- A README.md file
+- A README.md file with explanations of the technologies used, the approach taken, unsolved problems, user stories, and notes to yourself so you can come back to your project later in the course and be able to pick up your train of thought, etc
+- Have links to your hosted and working apps in the README.md files in your GitHub repos.
 
-## Team Contributions
+## Github Repo
 
-- Front-End Web Development: Angela, Pierre
-- Back-End Web Development: Brevan, Eric
+[Songlink Frontend](https://github.com/ercheung3/songlink-frontend)
+[Songlink Backend](https://github.com/ercheung3/songlink-backend)
