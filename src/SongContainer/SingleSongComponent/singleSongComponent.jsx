@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Card from "react-bootstrap/Card";
+import Offcanvas from "react-bootstrap/Offcanvas";
 import "./singleSongComponent.css";
 
 const SingleSongComponent = (props) => {
@@ -72,6 +73,8 @@ const SingleSongComponent = (props) => {
       });
       validSubmission = false;
     }
+    if (updateSong.albumArt === "") updateSong.albumArt = "/music.jpg";
+
     if (validSubmission) {
       props.updateSong(props.song._id, updateSong);
       setUpdateSong({
@@ -93,112 +96,123 @@ const SingleSongComponent = (props) => {
   };
 
   return (
-    <Card className="single-song-container bg-dark text-white">
-      <Card.Img
-        className="single-song-info"
-        src={props.song.albumArt}
-        alt={props.song.title}
-      />
-      <Card.ImgOverlay
-        style={{
-          backgroundImage: `radial-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.8)), url(${props.song.albumArt})`,
-        }}
-        className="single-song-texts single-song"
-      >
-        <Card.Title className="single-song-text">{props.song.title}</Card.Title>
-        <Card.Text className="single-song-text">{props.song.artist}</Card.Text>
-        <button
-          onClick={() => {
-            props.deleteSong(props.song._id);
+    <>
+      <Card className="single-song-container bg-dark text-white">
+        <Card.Img
+          className="single-song-info"
+          src={props.song.albumArt}
+          alt={props.song.title}
+        />
+        <Card.ImgOverlay
+          style={{
+            backgroundImage: `radial-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.8)), url(${props.song.albumArt})`,
           }}
+          className="single-song-texts single-song"
         >
-          DELETE
-        </button>
-        {/*COPIED FROM newItem, would use logic to check which form to use.*/}
-        <>
-          {
-            //If isActive is true, show form
-            isActive ? (
-              <div id="new-item-form">
-                <button onClick={toggleIsActive}>CLOSE FORM</button>
-                {/*If there is more validation; use new function
+          <Card.Link href={props.song.media} target="_blank" rel="noreferrer">
+            <Card.Title className="single-song-text single-song-title">
+              {props.song.title}
+            </Card.Title>
+            <Card.Text className="single-song-text">
+              {props.song.artist}
+            </Card.Text>
+          </Card.Link>
+
+          <button
+            onClick={() => {
+              props.deleteSong(props.song._id);
+            }}
+          >
+            DELETE
+          </button>
+          {/*COPIED FROM newItem, would use logic to check which form to use.*/}
+          <button onClick={toggleIsActive}>EDIT</button>
+        </Card.ImgOverlay>
+      </Card>
+      <>
+        {isActive ? (
+          <Offcanvas show={toggleIsActive} onHide={toggleIsActive} {...props}>
+            <Offcanvas.Header closeButton>
+              <Offcanvas.Title>Edit The Song</Offcanvas.Title>
+            </Offcanvas.Header>
+            <Offcanvas.Body>
+              {/*If there is more validation; use new function
                     TODO: props.functionToCall to change onSubmit to either new item or update item
                 */}
-                <form onSubmit={submitUpdateItem}>
-                  {/*Checks valid submission state from submitNewItem}*/}
-                  {isValidState.valid ? null : (
-                    <p className="form-error">{isValidState.message}</p>
-                  )}
-                  {/*value={} is called data binding*/}
-                  Song Name:{" "}
-                  <input
-                    onChange={handleInputChange}
-                    type="text"
-                    name="title"
-                    value={updateSong.title}
-                  ></input>
-                  Artist:{" "}
-                  <input
-                    onChange={handleInputChange}
-                    type="text"
-                    name="artist"
-                    value={updateSong.artist}
-                  ></input>
-                  Album Title:{" "}
-                  <input
-                    onChange={handleInputChange}
-                    type="text"
-                    name="albumTitle"
-                    value={updateSong.albumTitle}
-                  ></input>
-                  Album Art:{" "}
-                  <input
-                    onChange={handleInputChange}
-                    type="text"
-                    name="albumArt"
-                    value={updateSong.albumArt}
-                  ></input>
-                  {/*SHOULD BE CHANGED TO DROPDOWN MENU*/}
-                  {/*Does select work with genre list? */}
-                  Genre:{" "}
-                  <input
-                    onChange={handleInputChange}
-                    type="text"
-                    name="genre"
-                    value={updateSong.genre}
-                  ></input>
-                  <input
-                    onChange={handleInputChange}
-                    type="text"
-                    name="media"
-                    value={updateSong.media}
-                    placeholder="Media Link"
-                  ></input>
-                  <input
-                    onChange={handleInputChange}
-                    type="text"
-                    name="isPlayable"
-                    value={updateSong.isPlayable}
-                    placeholder="Playable"
-                  ></input>
-                  <input
-                    onChange={handleInputChange}
-                    type="text"
-                    name="preview"
-                    value={updateSong.preview}
-                    placeholder="Preview Link"
-                  ></input>
-                  <br></br>
-                  <button type="submit">UPDATE SONG</button>
-                </form>
-              </div>
-            ) : (
-              <button onClick={toggleIsActive}>EDIT</button>
-            )
-          }
-        </>
-      </Card.ImgOverlay>
-    </Card>
+              <form onSubmit={submitUpdateItem}>
+                {/*Checks valid submission state from submitNewItem}*/}
+                {isValidState.valid ? null : (
+                  <p className="form-error">{isValidState.message}</p>
+                )}
+                {/*value={} is called data binding*/}
+                <input
+                  onChange={handleInputChange}
+                  type="text"
+                  name="title"
+                  value={updateSong.title}
+                  placeholder="Song Name"
+                ></input>
+                <input
+                  onChange={handleInputChange}
+                  type="text"
+                  name="artist"
+                  value={updateSong.artist}
+                  placeholder="Artist Name"
+                ></input>
+                <input
+                  onChange={handleInputChange}
+                  type="text"
+                  name="albumTitle"
+                  value={updateSong.albumTitle}
+                  placeholder="Album Title"
+                ></input>
+                <input
+                  onChange={handleInputChange}
+                  type="text"
+                  name="albumArt"
+                  value={updateSong.albumArt}
+                  placeholder="Album Art URL"
+                ></input>
+                {/*SHOULD BE CHANGED TO DROPDOWN MENU*/}
+                {/*Does select work with genre list? */}
+                <input
+                  onChange={handleInputChange}
+                  type="text"
+                  name="genre"
+                  value={updateSong.genre}
+                  placeholder="Genre"
+                ></input>
+                <input
+                  onChange={handleInputChange}
+                  type="text"
+                  name="media"
+                  value={updateSong.media}
+                  placeholder="Media Link"
+                ></input>
+                <input
+                  onChange={handleInputChange}
+                  type="text"
+                  name="isPlayable"
+                  value={updateSong.isPlayable}
+                  placeholder="Playable"
+                ></input>
+                <input
+                  onChange={handleInputChange}
+                  type="text"
+                  name="preview"
+                  value={updateSong.preview}
+                  placeholder="Preview Link"
+                ></input>
+                <br></br>
+                <button type="submit">UPDATE SONG</button>
+              </form>
+            </Offcanvas.Body>
+          </Offcanvas>
+        ) : (
+          ""
+        )}
+      </>
+    </>
   );
 };
 

@@ -1,6 +1,19 @@
 .single-song-container {
     width: 15vw;
     height: 15vw;
+    font-size: 0.8em;
+}
+
+a,
+a:link,
+a:visited,
+a:active{
+    text-decoration: none;
+    color:white;
+}
+
+a:hover {
+    color: #9AB5D9;
 }
 
 .single-song-info {

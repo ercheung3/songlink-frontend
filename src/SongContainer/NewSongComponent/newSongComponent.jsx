@@ -77,7 +77,7 @@ const NewSongComponent = (props) => {
         artist: "",
         albumTitle: "",
         //Link to default album art?
-        albumArt: "",
+        albumArt: "/music.jpg",
         genre: "",
         media: "",
         isPlayable: false,
