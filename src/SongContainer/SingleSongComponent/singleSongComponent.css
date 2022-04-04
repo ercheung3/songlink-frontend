@@ -43,5 +43,64 @@ a:hover {
 
 .single-song-texts:hover {
     opacity: 1;
+}
+.single-song-buttons {
+    position: relative;
+    display:flex;
+    justify-content: space-between;
+    bottom:0;
+}
 
+@media only screen and (min-width: 1100px){
+    .change-button-delete, .change-button-edit {
+        position: absolute;
+        bottom: 10px;
+        max-width: 8vw;
+        max-height: 30px;
+    }
+    .change-button-delete p, .change-button-edit p {
+        font-size: 1vh;
+    }
+}
+
+@media only screen and (min-width: 1300px){
+    .change-button-delete, .change-button-edit {
+        position: absolute;
+        bottom: 10px;
+        max-width: 8vw;
+        max-height: 30px;
+    }
+    .change-button-delete p, .change-button-edit p {
+        font-size: 12px;
+    }
+}
+.change-button-delete, .change-button-edit {
+    position: absolute;
+    bottom: 10px;
+    max-width: 5vw;
+    max-height: 30px;
+    font-size: 12px;
+}
+
+.change-button-delete {
+    right:25px;
+}
+
+.change-button-edit {
+    left:25px;
+}
+
+.edit-form {
+    text-align: center;
+}
+
+.edit-form input {
+    width: 225px;
+    margin: 5px 0;
+}
+
+.update-submit-button {
+    margin-top: 25px;
+    position: absolute;
+    right: 10px;
 }

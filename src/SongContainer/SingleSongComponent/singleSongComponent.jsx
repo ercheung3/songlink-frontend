@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Card from "react-bootstrap/Card";
 import Offcanvas from "react-bootstrap/Offcanvas";
+import Button from "react-bootstrap/Button";
 import "./singleSongComponent.css";
 
 const SingleSongComponent = (props) => {
@@ -46,12 +47,16 @@ const SingleSongComponent = (props) => {
    * @returns none
    */
   const handleInputChange = (e) => {
-    setUpdateSong({
-      //property spread notation
-      ...updateSong,
-      //e is event; we use target to allow for all input fields.
-      [e.target.name]: e.target.value,
-    });
+    try {
+      setUpdateSong({
+        //property spread notation
+        ...updateSong,
+        //e is event; we use target to allow for all input fields.
+        [e.target.name]: e.target.value,
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   /**
@@ -117,16 +122,24 @@ const SingleSongComponent = (props) => {
               {props.song.artist}
             </Card.Text>
           </Card.Link>
-
-          <button
+          {/* WORK ON BUTTONS AND MOVE TO BOTTOM */}
+          <Button
+            variation="danger"
             onClick={() => {
               props.deleteSong(props.song._id);
             }}
+            className="change-button-delete"
           >
-            DELETE
-          </button>
+            <p>DELETE</p>
+          </Button>
           {/*COPIED FROM newItem, would use logic to check which form to use.*/}
-          <button onClick={toggleIsActive}>EDIT</button>
+          <Button
+            variation="primary"
+            className="change-button-edit"
+            onClick={toggleIsActive}
+          >
+            <p>EDIT</p>
+          </Button>
         </Card.ImgOverlay>
       </Card>
       <>
@@ -135,7 +148,7 @@ const SingleSongComponent = (props) => {
             <Offcanvas.Header closeButton>
               <Offcanvas.Title>Edit The Song</Offcanvas.Title>
             </Offcanvas.Header>
-            <Offcanvas.Body>
+            <Offcanvas.Body className="edit-form">
               {/*If there is more validation; use new function
                     TODO: props.functionToCall to change onSubmit to either new item or update item
                 */}
@@ -204,7 +217,13 @@ const SingleSongComponent = (props) => {
                   placeholder="Preview Link"
                 ></input>
                 <br></br>
-                <button type="submit">UPDATE SONG</button>
+                <Button
+                  variation="primary"
+                  className="update-submit-button"
+                  type="submit"
+                >
+                  UPDATE SONG
+                </Button>
               </form>
             </Offcanvas.Body>
           </Offcanvas>

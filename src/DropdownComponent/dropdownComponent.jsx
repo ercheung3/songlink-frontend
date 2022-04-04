@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-const DropdownCompartment = (props) => {
+const DropdownComponent = (props) => {
   const [selectedValue, setSelectedValue] = useState("");
   return (
     <div>
@@ -18,4 +18,4 @@ const DropdownCompartment = (props) => {
   );
 };
 
-export default DropdownCompartment;
+export default DropdownComponent;

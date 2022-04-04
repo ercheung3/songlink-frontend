@@ -1,23 +1,17 @@
 import "./App.css";
 import SongContainer from "./SongContainer/songContainer";
-import DropdownCompartment from "./DropdownCompartment/dropdownCompartment";
 import HeaderContainer from "./HeaderContainer/headerContainer";
+import DropdownComponent from "./DropdownComponent/dropdownComponent";
 import axios from "axios";
 import { React, useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import FooterContainer from "./FooterContainer/footerContainer";
 
 function App() {
   const clientId = process.env.REACT_APP_CLIENT_ID;
   const clientSecret = process.env.REACT_APP_CLIENT_SECRET;
   const spotifyURL = "https://accounts.spotify.com/api/token";
   const btoaString = btoa(clientId + ":" + clientSecret);
-
-  //API search when creating a new recommendation
-  const data = [
-    { value: 1, name: "A" },
-    { value: 2, name: "B" },
-    { value: 3, name: "C" },
-  ];
 
   const [token, setToken] = useState("");
   const [genres, setGenres] = useState({
@@ -160,10 +154,6 @@ function App() {
   return (
     <div className="App">
       <HeaderContainer></HeaderContainer>
-      <DropdownCompartment
-        options={genres.listOfGenresFromAPI}
-        selectedValue={genres.selectedGenre}
-      ></DropdownCompartment>
 
       <SongContainer
         artist={artist}
@@ -177,6 +167,8 @@ function App() {
         toggleIsSongActive={toggleIsSongActive}
         handleInputChange={handleInputChange}
       ></SongContainer>
+
+      <FooterContainer></FooterContainer>
     </div>
   );
 }

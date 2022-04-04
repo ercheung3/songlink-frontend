@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import SingleSongComponent from "./SingleSongComponent/singleSongComponent";
 import NewSongComponent from "./NewSongComponent/newSongComponent";
 import FavoritesComponent from "./FavoritesComponent/favoritesComponent";
-import DropdownCompartment from "../DropdownCompartment/dropdownCompartment";
 const SongContainer = (props) => {
   const [songs, setSongs] = useState([]);
   const [newSongServerError, setNewSongServerError] = useState("");
@@ -197,17 +196,22 @@ const SongContainer = (props) => {
       {/*how to check for length of object or map songs.map.length returns 1 always */}
       {/*check what happens to _id if given -1 and then made into a new song*/}
       {/*can you login to spotify without an account?*/}
-      <div className="songs-container">
-        {songs.reverse().map((song) => {
-          return (
-            <SingleSongComponent
-              key={song._id}
-              song={song}
-              deleteSong={deleteSong}
-              updateSong={updateSong}
-            ></SingleSongComponent>
-          );
-        })}
+      <div className="songs-wrapper">
+        <div className="songs-title">
+          <h3>Songs List</h3>
+        </div>
+        <div className="songs-container">
+          {songs.reverse().map((song) => {
+            return (
+              <SingleSongComponent
+                key={song._id}
+                song={song}
+                deleteSong={deleteSong}
+                updateSong={updateSong}
+              ></SingleSongComponent>
+            );
+          })}
+        </div>
       </div>
       <NewSongComponent
         newSongServerError={newSongServerError}

@@ -39,3 +39,14 @@
     top:0;
     right:0;
 }
+
+.new-song-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin:25px;
+}
+.center {
+    display: block;
+    margin: auto;
+}

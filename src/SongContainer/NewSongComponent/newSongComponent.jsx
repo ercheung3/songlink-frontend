@@ -214,9 +214,15 @@ const NewSongComponent = (props) => {
           </div>
         ) : (
           //If isActive is false, showButton
-          <Button variant="primary" onClick={toggleIsActive}>
-            Add A New Song!
-          </Button>
+          <div className="new-song-button-container">
+            <Button
+              className="center"
+              variant="primary"
+              onClick={toggleIsActive}
+            >
+              Add A New Song!
+            </Button>
+          </div>
         )
       }
     </>

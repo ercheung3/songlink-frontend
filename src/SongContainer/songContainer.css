@@ -7,7 +7,6 @@
 }
 .favorites-wrapper {
     color: white;
-    text-align: center;
     background-color: #0C1940;
     height: 50vh;
     margin: 2vh 0;
@@ -19,4 +18,10 @@
     row-gap: 3vh;
     justify-content: space-evenly;
     margin: 2vh 2vw;
+}
+
+.songs-wrapper {
+    color: #0C1940;
+    background-color: white;
+    padding: 1vh;
 }
