@@ -154,7 +154,7 @@ function App() {
   return (
     <div className="App">
       <HeaderContainer></HeaderContainer>
-
+      <LyricsContainer></LyricsContainer>
       <SongContainer
         artist={artist}
         getArtist={getArtist}
