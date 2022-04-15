@@ -6,6 +6,7 @@ import axios from "axios";
 import { React, useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import FooterContainer from "./FooterContainer/footerContainer";
+import LyricsContainer from "./LyricsContainer/lyricsContainer";
 
 function App() {
   const clientId = process.env.REACT_APP_CLIENT_ID;
