@@ -102,5 +102,5 @@ Lyrics
 ## Github Repo
 
 [Songlink Frontend](https://github.com/ercheung3/songlink-frontend)\
-
-[Songlink Backend](https://github.com/ercheung3/songlink-django)
+[Songlink (mongodb) Backend](https://github.com/ercheung3/songlink-backend)\
+[Songlink (django) Backend](https://github.com/ercheung3/songlink-django)
