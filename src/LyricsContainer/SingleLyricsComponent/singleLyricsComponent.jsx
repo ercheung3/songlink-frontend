@@ -102,10 +102,10 @@ const SingleLyricsComponent = (props) => {
       {/* WORK ON BUTTONS AND MOVE TO BOTTOM */}
       <Modal show={isLyricsModalActive} onHide={toggleIsLyricsModalActive}>
         <Modal.Header closeButton>
-          <Modal.Title>{props.lyrics.title}</Modal.Title>
+          <Modal.Title>{updateLyrics.title}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p>{props.lyrics.text}</p>
+          <p>{updateLyrics.text}</p>
         </Modal.Body>
         <Modal.Footer>
           <Button
@@ -136,15 +136,16 @@ const SingleLyricsComponent = (props) => {
             show={toggleisLyricsActive}
             onHide={toggleisLyricsActive}
             {...props}
+            className="offcanvas-style" //style={{ width: "50vw" }}
           >
             <Offcanvas.Header closeButton>
               <Offcanvas.Title>Edit The Lyrics</Offcanvas.Title>
             </Offcanvas.Header>
-            <Offcanvas.Body className="edit-form">
+            <Offcanvas.Body>
               {/*If there is more validation; use new function
                     TODO: props.functionToCall to change onSubmit to either new item or update item
                 */}
-              <form onSubmit={submitUpdateItem}>
+              <form className="edit-lyrics-form" onSubmit={submitUpdateItem}>
                 {/*Checks valid submission state from submitNewItem}*/}
                 {isLyricsValidState.valid ? null : (
                   <p className="form-error">{isLyricsValidState.message}</p>
@@ -157,18 +158,18 @@ const SingleLyricsComponent = (props) => {
                   value={updateLyrics.title}
                   placeholder="Song Name"
                 ></input>
-                <input
+                <textarea
                   onChange={handleInputChange}
                   type="text"
                   name="text"
                   value={updateLyrics.text}
                   placeholder="Lyrics Text"
                   style={{ height: "50vh" }}
-                ></input>
+                ></textarea>
                 <br></br>
                 <Button
                   variation="primary"
-                  className="update-submit-button"
+                  className="update-lyrics-submit-button"
                   type="submit"
                 >
                   UPDATE LYRICS

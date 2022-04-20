@@ -6,15 +6,24 @@ const FavoritesComponent = (props) => {
 
   const albumArtUrl = props.song.albumArt;
   const playPreview = () => {
-    if (props.song.isPlayable) {
-      audio = new Audio(props.song.preview);
-      audio.play();
+    try {
+      if (props.song.isPlayable) {
+        audio = new Audio(props.song.preview);
+        audio.play();
+      }
+    } catch (err) {
+      console.log(err);
     }
   };
+
   const stopPreview = () => {
-    if (props.song.isPlayable) {
-      audio.pause();
-      audio.currentTime = 0;
+    try {
+      if (props.song.isPlayable) {
+        audio.pause();
+        audio.currentTime = 0;
+      }
+    } catch (err) {
+      console.log(err);
     }
   };
 

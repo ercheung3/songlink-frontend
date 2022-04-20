@@ -5,3 +5,20 @@
 .lyrics-title {
     display:inline;
 }
+
+.edit-lyrics-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.offcanvas-style {
+    width: 50vw;
+}
+
+input {
+    margin-bottom: 1vh;
+}
+
+.update-lyrics-submit-button {
+    width: 25%;
+}

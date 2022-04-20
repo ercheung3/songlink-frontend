@@ -6,7 +6,9 @@ const LyricsContainer = () => {
   const [lyrics, setLyrics] = useState([]);
   const [newLyricsServerError, setNewLyricsServerError] = useState("");
   const [requestError, setRequestError] = useState("");
-  const websiteURL = "http://localhost:8000/api/lyrics";
+
+  //const websiteURL = "http://localhost:8000/api/lyrics";
+  const websiteURL = "http://https://songlink-django.herokuapp.com/api/lyrics";
   /**
    * @name getLyrics
    * @description Send API reponse to fetch all Lyrics
@@ -74,6 +76,7 @@ const LyricsContainer = () => {
         "Content-Type": "application/json",
       },
     });
+    //console.log(apiResponse.status);
     const parsedResponse = await apiResponse.json();
     if (apiResponse.status === 200) {
       /*
@@ -100,7 +103,7 @@ const LyricsContainer = () => {
   };
 
   /**
-   * @name deleteLyric
+   * @name deleteLyrics
    * @description Sends API response to delete an specific Lyric with idToDelete
    *
    * @param {String} idToDelete
@@ -111,7 +114,8 @@ const LyricsContainer = () => {
       const apiResponse = await fetch(`${websiteURL}/${idToDelete}`, {
         method: "DELETE",
       });
-      if (apiResponse === 204) {
+
+      if (apiResponse.status === 204) {
         /*
         const newItems = [];
         //Javascript style function with array delete item
@@ -120,7 +124,6 @@ const LyricsContainer = () => {
             if(items[i]._id !== idToDelete) newItems.push(items[i])
         }
         */
-
         //Creates collection for passed tests
         /*
        const newItems = items.filter((item) => {
@@ -128,8 +131,8 @@ const LyricsContainer = () => {
        })
        */
         //Simple one line to delete a single item
-        const newLyrics = lyrics.filter((lyric) => lyric.id !== idToDelete);
 
+        const newLyrics = lyrics.filter((lyric) => lyric.id !== idToDelete);
         //Set state with new items
         setLyrics(newLyrics);
       } else {
