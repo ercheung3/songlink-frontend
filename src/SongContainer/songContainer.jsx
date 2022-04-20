@@ -3,17 +3,16 @@ import { useEffect, useState } from "react";
 import SingleSongComponent from "./SingleSongComponent/singleSongComponent";
 import NewSongComponent from "./NewSongComponent/newSongComponent";
 import FavoritesComponent from "./FavoritesComponent/favoritesComponent";
+
 const SongContainer = (props) => {
   const [songs, setSongs] = useState([]);
   const [newSongServerError, setNewSongServerError] = useState("");
   const [requestError, setRequestError] = useState("");
 
-  const websiteURL = "https://songlink-backend.herokuapp.com/songs";
+  //const websiteURL = "https://songlink-backend.herokuapp.com/songs";
+  const websiteURL = "http://localhost:8000/api/song";
 
-  const [favoriteSongs, setFavoriteSongs] = useState([
-    "6249e7e97b371ce829bc42ce",
-    "6249eaaa7b371ce829bc42d8",
-  ]);
+  const [favoriteSongs, setFavoriteSongs] = useState([7, 5, 8]);
   /*
   Manually add new song, look up artist, or look up song
   3 different compartments
@@ -38,9 +37,11 @@ const SongContainer = (props) => {
    */
   const getSongs = async () => {
     try {
-      const songs = await fetch(`${websiteURL}`);
+      const songs = await fetch(`${websiteURL}/`);
       const parsedSongs = await songs.json();
-      setSongs(parsedSongs.data);
+      //MongoDB
+      //setSongs(parsedSongs.data);
+      setSongs(parsedSongs);
     } catch (err) {
       console.log(err);
     }
@@ -60,7 +61,20 @@ const SongContainer = (props) => {
         */
 
     //Send request to back-end, changed port to 3001
+    /*
     const apiResponse = await fetch(`${websiteURL}`, {
+      method: "POST",
+      //body has to be a string!
+      body: JSON.stringify(newSong),
+      //Request had an issue with how it was sent with headers
+      headers: {
+        //Request is from json
+        "Content-Type": "application/json",
+      },
+    });
+    */
+
+    const apiResponse = await fetch(`${websiteURL}/`, {
       method: "POST",
       //body has to be a string!
       body: JSON.stringify(newSong),
@@ -74,10 +88,11 @@ const SongContainer = (props) => {
     const parsedResponse = await apiResponse.json();
     //If success is true:
     //Add the new item to state
-    if (parsedResponse.success) {
-      setSongs([...songs, parsedResponse.data]);
+    //MongoDB validation if (parsedResponse.success) {
+    if (apiResponse.status === 201) {
+      setSongs([...songs, parsedResponse]);
     } else {
-      setNewSongServerError(parsedResponse.data.error);
+      setNewSongServerError(parsedResponse);
       //TODO: REFACTOR STATE from newItemForm to here
     }
   };
@@ -98,7 +113,7 @@ const SongContainer = (props) => {
       },
     });
     const parsedResponse = await apiResponse.json();
-    if (parsedResponse.success) {
+    if (apiResponse.status === 200) {
       /*
     const newItems = [];
     //Javascript style function with array find item to update
@@ -114,11 +129,11 @@ const SongContainer = (props) => {
     */
       //Simple one line to add updated item
       const newSongs = songs.map((song) =>
-        song._id === idToUpdate ? songToUpdate : song
+        song.id === idToUpdate ? songToUpdate : song
       );
       setSongs(newSongs);
     } else {
-      setRequestError(parsedResponse.data);
+      setRequestError(parsedResponse);
     }
   };
 
@@ -130,13 +145,11 @@ const SongContainer = (props) => {
    * @returns null
    */
   const deleteSong = async (idToDelete) => {
-    try {
-      const apiResponse = await fetch(`${websiteURL}/${idToDelete}`, {
-        method: "DELETE",
-      });
-      const parsedResponse = await apiResponse.json();
-      if (parsedResponse.success) {
-        /*
+    const apiResponse = await fetch(`${websiteURL}/${idToDelete}`, {
+      method: "DELETE",
+    });
+    if (apiResponse.status === 204) {
+      /*
         const newItems = [];
         //Javascript style function with array delete item
         for(let i = 0; i < items.length; i++) {
@@ -145,25 +158,21 @@ const SongContainer = (props) => {
         }
         */
 
-        //Creates collection for passed tests
-        /*
+      //Creates collection for passed tests
+      /*
        const newItems = items.filter((item) => {
            return item._id !== idToDelete
        })
        */
-        //Simple one line to delete a single item
-        const newSongs = songs.filter((song) => song._id !== idToDelete);
+      //Simple one line to delete a single item
+      const newSongs = songs.filter((song) => song.id !== idToDelete);
 
-        //Set state with new items
-        setSongs(newSongs);
-      } else {
-        setRequestError(parsedResponse.data);
-      }
-    } catch (err) {
-      console.log(err);
-
-      //TODO: Handle unsuccessful delete
+      //Set state with new items
+      setSongs(newSongs);
+    } else {
+      setRequestError(apiResponse);
     }
+    //TODO: Handle unsuccessful delete
   };
 
   //API call function when page loads
@@ -178,9 +187,19 @@ const SongContainer = (props) => {
         <div className="favorites-container">
           {songs.map((song) => {
             return favoriteSongs.map((favoriteSong) => {
+              /* MONGODDB BACKEND
               return song._id === favoriteSong ? (
                 <FavoritesComponent
                   key={song._id}
+                  song={song}
+                ></FavoritesComponent>
+              ) : (
+                ""
+              );
+              */
+              return song.id === favoriteSong ? (
+                <FavoritesComponent
+                  key={song.id}
                   song={song}
                 ></FavoritesComponent>
               ) : (
@@ -201,10 +220,10 @@ const SongContainer = (props) => {
           <h3>Songs List</h3>
         </div>
         <div className="songs-container">
-          {songs.reverse().map((song) => {
+          {songs.map((song) => {
             return (
               <SingleSongComponent
-                key={song._id}
+                key={`song-${song.id}`}
                 song={song}
                 deleteSong={deleteSong}
                 updateSong={updateSong}

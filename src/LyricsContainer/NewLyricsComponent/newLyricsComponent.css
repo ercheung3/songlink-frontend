@@ -1,0 +1,52 @@
+#new-lyrics-form-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 40vw;
+    justify-content: center;
+    align-items: center;
+}
+
+.new-lyrics-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#new-lyrics-form-container {
+    position: relative;
+    border: 1px solid black;
+    padding: 100px 100px;
+    margin-top: 100px;
+    background-color: #FAF9F6;
+    /* border-radius: 6px; */
+    /* width: 100vh; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 0 auto;
+}
+.form-inputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: .8rem;
+}
+.close-button {
+    position:absolute;
+    top:0;
+    right:0;
+}
+
+.new-lyrics-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin:25px;
+}
+.center {
+    display: block;
+    margin: auto;
+}

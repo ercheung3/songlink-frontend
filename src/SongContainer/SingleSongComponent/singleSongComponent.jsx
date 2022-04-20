@@ -13,7 +13,7 @@ const SingleSongComponent = (props) => {
     albumArt: props.song.albumArt,
     genre: props.song.genre,
     media: props.song.media,
-    _id: props.song._id,
+    id: props.song.id,
     isPlayable: props.song.isPlayable,
     preview: props.song.preview,
   });
@@ -81,7 +81,7 @@ const SingleSongComponent = (props) => {
     if (updateSong.albumArt === "") updateSong.albumArt = "/music.jpg";
 
     if (validSubmission) {
-      props.updateSong(props.song._id, updateSong);
+      props.updateSong(props.song.id, updateSong);
       setUpdateSong({
         title: updateSong.title,
         artist: updateSong.artist,
@@ -126,7 +126,7 @@ const SingleSongComponent = (props) => {
           <Button
             variation="danger"
             onClick={() => {
-              props.deleteSong(props.song._id);
+              props.deleteSong(props.song.id);
             }}
             className="change-button-delete"
           >

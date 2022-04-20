@@ -1,0 +1,7 @@
+.lyrics-title:hover {
+    cursor: pointer;
+}
+
+.lyrics-title {
+    display:inline;
+}

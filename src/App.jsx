@@ -155,7 +155,7 @@ function App() {
   return (
     <div className="App">
       <HeaderContainer></HeaderContainer>
-      <LyricsContainer></LyricsContainer>
+
       <SongContainer
         artist={artist}
         getArtist={getArtist}
@@ -168,6 +168,8 @@ function App() {
         toggleIsSongActive={toggleIsSongActive}
         handleInputChange={handleInputChange}
       ></SongContainer>
+
+      <LyricsContainer></LyricsContainer>
 
       <FooterContainer></FooterContainer>
     </div>
