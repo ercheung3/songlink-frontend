@@ -5,8 +5,10 @@ I have always wanted to share my music taste with the world and now you can shar
 
 ## Hosted App Link
 
-[Songlink App via Heroku](https://songlink-frontend.herokuapp.com/)\
-[Songlink Backend via Heroku](https://songlink-backend.herokuapp.com/)
+[Songlink App via Heroku](http://songlink-frontend.herokuapp.com/)\
+[Songlink (mongodb) backend via Heroku](http://songlink-backend.herokuapp.com/)\
+Update v2\
+[Songlink (django) Backend via Heroku](http://songlink-django.herokuapp.com/)
 
 ## Preview of Songlink
 
@@ -19,8 +21,10 @@ I have always wanted to share my music taste with the world and now you can shar
 
 ## Frameworks & Libraries
 
-- MongoDB Atlas, Mongoose
-- Node.js
+-Mongodb Atlas, Mongoose
+
+Update v2
+- Django,Postgresql
 - React.js
 - API Axios
 - Bootstrap for React
@@ -32,7 +36,11 @@ I have always wanted to share my music taste with the world and now you can shar
   - User finds a song that they are interested in and linked to spotify.
   - Anyone is able to edit or delete an favorited song.
   - User is able to add a new favorited song by searching an artist and top song from the artist.
-
+Update v2
+- User can view lyrics to their favorite songs
+  - User can view lyrics that others have added
+  - User can add lyrics with a song title
+  - User can edit or delete lyrics
 ## STRETCH GOALS
 
 - CSS
@@ -43,6 +51,7 @@ I have always wanted to share my music taste with the world and now you can shar
 - Search functionality of artists from spotify API as well as artist's top 10 tracks.
 - Preview of songs that have sound snippets
 - Bootstrap Components
+
 
 ## Future Features
 
@@ -56,22 +65,31 @@ I have always wanted to share my music taste with the world and now you can shar
 - Multiple Artists for a single song
 - No duplication of songs
 
+Updated v2
+- Connect lyrics to a song as a relationship
+- Format lyrics using rich text editor(ex. React Quil)
+- Implement musixmatch to generate lyrics
+
 ## Models
 
 Songs
+- title = models.CharField(max_length=256)
+- artist = models.CharField(max_length=128)
+- albumTitle = models.CharField(max_length=256,blank=True)
+- albumArt = models.CharField(max_length=128,default="/music.jpg")
+- genre = models.CharField(max_length=64,blank=True)
+- media = models.CharField(max_length=256,blank=True)
+- preview = models.CharField(max_length=256,blank=True)
+- lyrics = models.ForeignKey('lyrics_api.Lyrics', on_delete=models.CASCADE,null=True)
 
-- title: String
-- artist: String
-- albumTitle: String
-- albumArt: String (url)
-- genre: String
-- media: String (url to spotify)
-- isPlayable: Boolean
-- preview: String (url to mp3)
+Update v2
+Lyrics
+- title = models.CharField(max_length=64)
+- text = models.CharField(max_length=2048)
 
 ## General Assembly Project Requirements
 
-- A working full-stack application, built by you, using the MERN stack: Node.js, Mongoose, Express and React.
+- A working full-stack application, built by you
 - Your project should not include EJS.
 - Adhere to the MVC file structure: Models, Views, Controllers (Note, in this case views is React in it's own separate repository; there will not be an actual views directory in your Express backend)
 - At least one model with full CRUD.
@@ -84,4 +102,5 @@ Songs
 ## Github Repo
 
 [Songlink Frontend](https://github.com/ercheung3/songlink-frontend)\
-[Songlink Backend](https://github.com/ercheung3/songlink-backend)
+
+[Songlink Backend](https://github.com/ercheung3/songlink-django)
