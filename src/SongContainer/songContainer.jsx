@@ -11,7 +11,7 @@ const SongContainer = (props) => {
 
   //const websiteURL = "https://songlink-backend.herokuapp.com/songs";
   //const websiteURL = "http://localhost:8000/api/song";
-  const websiteURL = "http://https://songlink-django.herokuapp.com/api/song";
+  const websiteURL = "http://songlink-django.herokuapp.com/api/song";
 
   const [favoriteSongs, setFavoriteSongs] = useState([7, 5, 8]);
   /*

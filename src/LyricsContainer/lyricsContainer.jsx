@@ -8,7 +8,7 @@ const LyricsContainer = () => {
   const [requestError, setRequestError] = useState("");
 
   //const websiteURL = "http://localhost:8000/api/lyrics";
-  const websiteURL = "http://https://songlink-django.herokuapp.com/api/lyrics";
+  const websiteURL = "http://songlink-django.herokuapp.com/api/lyrics";
   /**
    * @name getLyrics
    * @description Send API reponse to fetch all Lyrics
